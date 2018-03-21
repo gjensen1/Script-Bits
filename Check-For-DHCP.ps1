@@ -40,19 +40,6 @@ $inputFile = Get-FileName $Global:Folder
 $TargetList = Read-TargetList $inputFile
 "----------------------------------------------------------"
 
-Invoke-Command -ComputerName $TargetList {
-#Invoke-Command -ComputerName itspajweemra001 {
-    $Patches = 'KB4088875', 'KB4088878'
-    #$Patches = 'KB4074587'
-    Get-HotFix -Id $Patches
-} -ErrorAction SilentlyContinue -ErrorVariable Problem
-#-Credential (Get-Credential) -ErrorAction SilentlyContinue -ErrorVariable Problem
- 
-foreach ($p in $Problem) {
-    if ($p.origininfo.pscomputername) {
-        Write-Warning -Message "Patch not found on $($p.origininfo.pscomputername)" 
-    }
-    elseif ($p.targetobject) {
-        Write-Warning -Message "Unable to connect to $($p.targetobject)"
-    }
+ForEach ($Target in $TargetList){
+    Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter IPEnabled=TRUE -ComputerName $Target | Format-Table @{N="ComputerName";E={($Target)}}, DHCPEnabled, IPAddress, Description 
 }
