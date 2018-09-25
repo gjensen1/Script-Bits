@@ -781,7 +781,8 @@ $wb = $xl.Workbooks.Add()
 $ws = $wb.Worksheets.Item(1)
 $ws.Cells.Item(1,1) = “A value in cell A1.”
 [void]$ws.Range("A1").AddComment()
-[void]$ws.Range("A1").comment.Visible = $False
+#[void]$ws.Range("A1").comment.Visible = $False
+[void]$ws.Range("A1").comment.Visible
 [void]$ws.Range("A1").Comment.text("OldDog: `r this is a comment")
 [void]$ws.Range("A2").Select 
  

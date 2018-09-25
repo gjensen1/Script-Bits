@@ -133,7 +133,7 @@ Function Take-Snapshot($s) {
 #****************
 Function Delete-Snapshot($s) {
     "Deleting Patching Snapshot of $s"
-    Get-Snapshot -Name "Patching-Mar25" -vm $s | Remove-Snapshot -confirm:$false
+    Get-Snapshot -Name "Patch-Removal" -vm $s | Remove-Snapshot -confirm:$false
 }
 #****************************
 # EndFunction Delete-Snapshot

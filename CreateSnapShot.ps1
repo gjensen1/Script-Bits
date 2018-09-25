@@ -122,7 +122,7 @@ Function Read-TargetList {
 #**************
 Function Take-Snapshot($s) {
     "Taking Snapshot of $s"
-    Get-VM $s | New-Snapshot -Name "Patching-Mar25" -Description "Snapshot before Virtual Hardware Upgrade"
+    Get-VM $s | New-Snapshot -Name "Patch-Removal" -Description "Snapshot prior to patch removal"
 }
 #**************************
 # EndFunction Take-Snapshot
